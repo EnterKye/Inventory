@@ -407,8 +407,7 @@
                
             })
             table.on('tool(manage)', function (obj) {
-                var checkStatus = obj.data;
-                if (checkStatus.assetNum == "") {                  
+                var checkStatus = obj.data;                              
                     var url = checkStatus.deviceName + "|" + checkStatus.moveUser + "|" + checkStatus.moveAddress + "|" + checkStatus.moveTime + "|" + checkStatus.states;
                     console.log(url);
                     url = encodeURIComponent(url);//加密
@@ -420,14 +419,8 @@
                         area: ['60%', '90%'],
                         content: 'assetNumInfo.html?' + url
                     });
-                }
-                else {
-                    var url = checkStatus.assetNum + "|" + checkStatus.moveUser + "|" + checkStatus.moveAddress + "|" + checkStatus.moveTime + "|" + checkStatus.states;
-                    console.log(url);
-                    url = encodeURIComponent(url);
-                    console.log(url);
-
-                }
+                
+               
                 //var url = checkStatus.assetNum
                 //url = encodeURIComponent(url);
                 //console.log(checkStatus);//单号
