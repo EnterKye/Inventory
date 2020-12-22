@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PDI</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/liMarquee.css">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <style>
+        .dowebok {
+            font-size: 14px;
+        }
+
+            .dowebok a {
+                margin: 0 15px;
+                color: #333;
+                text-decoration: none;
+            }
+
+                .dowebok a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <div style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md3">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:80px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-cyan">总数</div>
+                                            <div class="layui-card-body" id="count">0</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header">主机</div>
+                            <div class="layui-card-body" style="min-height:90px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md4">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-blue">可用</div>
+                                            <div class="layui-card-body" id="okCount">0</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-col-md4">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-orange">待报废</div>
+                                            <div class="layui-card-body" id="waitCount">0</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md4">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-red">NG</div>
+                                            <div class="layui-card-body" id="ngCount">0</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:90px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-cyan">PDA</div>
+                                            <div class="layui-card-body" id="pdaCount">0</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:80px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-cyan">打印机</div>
+                                            <div class="layui-card-body" id="printCount">0</div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:90px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md6">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-blue">IPAD</div>
+                                            <div class="layui-card-body" id="ipadCount">0</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md6">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-blue">笔记本</div>
+                                            <div class="layui-card-body" id="bookCount">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="layui-col-md9">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header" style="font-size: xx-large; color: blue; font-family: '微软雅黑' "><i class="layui-icon layui-icon-list" style="color: blue;font-size:25px;"></i> 仓库管理系统</div>
+                        <div class="layui-card-body" style="">
+                            <div class="demoTable">
+                                搜索资产号：
+                                <div class="layui-inline">
+                                    <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+                                </div>
+                                人员：
+                                <div class="layui-inline">
+                                    <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+                                </div>
+                                状态：
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">搜索选择框</label>
+                                    <div class="layui-input-inline">
+                                        <select id="city" lay-verify="" lay-filter="city">
+                                            <option>请选择</option>//加上这一行，先占个坑
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="layui-btn" data-type="reload">搜索</button>
+                            </div>
+                            <table class="layui-hide" id="manage" lay-filter="manage"></table>
+                            <script type="text/html" id="toolbarDemo">
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="AddData">添加</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">查询</button>
+                                    <button class="layui-btn layui-btn-sm" lay-event="isAll">导出</button><br />
+
+                                </div>
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.liMarquee.js"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script>
+      
+
+       
+
+
+        
+
+         
+          
+        
+
+        layui.use(['form', 'table', 'layer'], function () {
+            var form = layui.form
+          , table = layui.table
+          , layer = layui.layer;
+            form.render();
+            table.render({
+                elem: '#manage'
+              , toolbar: '#toolbarDemo'
+              , defaultToolbar: []
+              , url: 'Inventory.ashx?timestamp=' + (new Date()).valueOf()//数据接口
+              , cols: [[ //表头
+                { field: 'id', title: 'ID', width: '8%', align: 'center' }
+                , { field: 'assetNum', title: '资产编号', minwidth: '15%', align: 'center' }
+                , { field: 'deviceName', title: '设备', align: 'center' }
+                , { field: 'moveUser', title: '人员', width: '10%', align: 'center' }
+                 , { field: 'moveAddress', title: '位置', align: 'center' }
+                  , { field: 'moveTime', title: '时间', align: 'center', templet: "<div>{{layui.util.toDateString(d.moveTime, 'yyyy-MM-dd HH:mm')}}</div>" }
+                   , { field: 'states', title: '状态', align: 'center' }
+                   , { field: 'remarks', minwidth: '15%', title: '备注', align: 'center' }
+              ]]
+             , id: 'manage'
+             , page: true
+             , loading: true
+             , height: 'full-200'
+             , limit: 20
+             , parseData: function (res) { //res 即为原始返回的数据
+                 res.data[0].LAY_CHECKED = true
+                 return {
+
+                     "code": 0, //解析接口状态
+                     "msg": res.message, //解析提示文本
+                     "count": res.count,//解析数据长度
+                     "data": res.data //解析数据列表
+                 };
+             }
+                , done: function (res, curr, count) {
+                    $("table").css("width", "100%");
+                }
+            });
+            //头事件
+           
+        });
+
+    </script>
+
+</body>
+</html>

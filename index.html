@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PDI</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/liMarquee.css">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <style>
+        .dowebok {
+            font-size: 14px;
+        }
+
+        .dowebok a {
+                margin: 0 15px;
+                color: #333;
+                text-decoration: none;
+            }
+
+       .dowebok a:hover {
+               text-decoration: underline;
+                }
+
+    </style>
+</head>
+<body>
+
+    <div style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md3">
+                <div class="layui-row layui-col-space15">                 
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header">主机</div>
+                            <div class="layui-card-body" style="min-height:90px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md4">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-blue">可用</div>
+                                            <div class="layui-card-body" id="okCount">0</div>
+                                        </div>
+                                    </div>
+                                 
+                                    <div class="layui-col-md4">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-orange">待报废</div>
+                                            <div class="layui-card-body" id="waitCount">0</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md4">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-red">NG</div>
+                                            <div class="layui-card-body" id="ngCount">0</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:90px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-cyan">PDA</div>
+                                            <div class="layui-card-body" id="pdaCount">0</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:80px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-cyan">打印机</div>
+                                            <div class="layui-card-body" id="printCount">0</div>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:90px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md6">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-blue">平板电脑</div>
+                                            <div class="layui-card-body" id="ipadCount">0</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-md6">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-blue">笔记本</div>
+                                            <div class="layui-card-body" id="bookCount">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:80px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-cyan">扫描仪</div>
+                                            <div class="layui-card-body" id="scanCount">0</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body" style="min-height:80px;">
+                                <div class="layui-col-space15">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-card">
+                                            <div class="layui-card-header layui-bg-cyan">其它</div>
+                                            <div class="layui-card-body" id="otherCount">0</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                
+                </div>
+            </div>
+
+            <div class="layui-col-md9 layui-form">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header" style="font-size: xx-large; color: blue; font-family: '微软雅黑' "><i class="layui-icon layui-icon-list" style="color: blue;font-size:25px;"></i> 仓库管理系统</div>
+                        <div class="layui-card-body" style="">
+                            <div class="demoTable">
+                                搜索资产号：
+                                <div class="layui-inline">
+                                    <input class="layui-input" name="id" id="assets" autocomplete="off">
+                                </div>
+                                人员：
+                                <div class="layui-inline">
+                                    <input class="layui-input" name="user" id="users" autocomplete="off">
+                                </div>
+                                状态：
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select id="selectStates" name="selectVal">
+                                            <option>请选择</option>
+                                            <option value="可用">可用</option>
+                                            <option value="NG">NG</option>
+                                            <option value="待报废">待报废</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="layui-btn layui-btn-normal" data-type="reload">搜索</button>
+                            </div>
+                            <table class="layui-hide" id="manage" lay-filter="manage"></table>
+                            <script type="text/html" id="toolbarDemo">
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="AddData">添加</button>
+
+                                    <button class="layui-btn layui-btn-sm" id="import">导出</button><br />
+                                 
+                                </div>
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="layui-col-md12">
+        <div class="dowebok">
+            <a href="javascript:" id="a0"></a>
+            <a href="javascript:" id="a1"></a>
+            <a href="javascript:" id="a2"></a>
+            <a href="javascript:" id="a3"></a>
+            <a href="javascript:" id="a4"></a>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.liMarquee.js"></script>
+
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="excel.js"></script>
+    <script>
+        $(function () {
+            $('.dowebok').liMarquee({
+                circular: false,
+                scrollamount: 50,
+                drag: false
+
+            });
+
+        });
+       
+        window.onload = function () {
+           
+            var all = 0;
+            $.ajax({//物品数量
+                async: false,
+                type: "post",
+                url: "dowebok.ashx?action=getCount",
+                success: function (res) {
+                   
+                    var result = jQuery.parseJSON(res);
+                  
+                    for (var i = 0; i < result.length; i++) {
+                     
+                        if (result[i].deviceName == "PDA") {
+                            $("#pdaCount").text(result[i].count);                            
+                        }
+                        if (result[i].deviceName == "主机") {
+                            $("#okCount").text(result[i].count);
+                        }
+                        if (result[i].deviceName == "平板电脑") {
+                            $("#ipadCount").text(result[i].count);
+                        }
+                        if (result[i].deviceName == "打印机") {
+                            $("#printCount").text(result[i].count);
+                        }
+                        if (result[i].deviceName == "笔记本") {
+                            $("#bookCount").text(result[i].count);
+                        }
+                        if (result[i].deviceName == "扫描仪") {
+                            $("#scanCount").text(result[i].count);
+                        }
+                        if (result[i].deviceName == "其它") {
+                            $("#otherCount").text(result[i].count);
+                        }
+                     
+                      
+                    }
+                },
+                error: function () {
+                    console.log(error.toString());
+                }
+
+            })
+
+            $.ajax({//NG 
+                async: false,
+                type: 'post',
+                url: "dowebok.ashx?action=ngCount",
+                success: function (res) {
+                              
+                    var datas = jQuery.parseJSON(res);
+                    for (var i = 0; i < datas.length; i++) {
+                        if (datas[i].deviceName == "主机") {
+                            $("#ngCount").text(datas[i].ngNum);
+                        }
+                      
+                      
+                        
+                    }
+                }
+            })
+
+            $.ajax({//wait
+                async: false,
+                type: 'post',
+                url: "dowebok.ashx?action=waitCount",
+                success: function (res) {
+                 
+                    var datas = jQuery.parseJSON(res);
+                    for (var i = 0; i < datas.length; i++) {
+                        if (datas[i].deviceName == "主机") {
+                            $("#waitCount").text(datas[i].waitNum);
+                        }
+                      
+                      
+                    }
+                }
+            })
+            
+            $("#count").text(all);
+            $.ajax({//滚动条
+                type: "post",
+                url: "dowebok.ashx?action=scrollData",
+                success: function (res) {                  
+                    var data = jQuery.parseJSON(res);
+                    for (var i = 0; i < data.length; i++) {
+                        $("#a" + [i]).text(data[i].moveTime + " " + data[i].deviceName + " " + data[i].assetNum + " " + data[i].moveAddress)                       
+                    }
+                },
+                error: function () {
+                    console.log(Error.toString());
+                }
+            })
+        }
+       
+        layui.use(['form', 'table', 'layer','jquery','excel'], function () {
+            var form = layui.form
+          , table = layui.table
+          , layer = layui.layer,
+          $ = layui.jquery,
+          excel = layui.excel;
+            table.render({
+                elem: '#manage'
+              , toolbar: '#toolbarDemo'
+              , title:'Data'
+              , defaultToolbar: []
+        , cellMinWidth: 80
+              , url: 'Inventory.ashx?timestamp=' + (new Date()).valueOf()//数据接口
+              , cols: [[ //表头
+                { field: 'assetNum', title: '资产编号', align: 'center', templet: addLink, fixed: 'left' }
+                , { field: 'deviceName', title: '设备', align: 'center' }
+                , { field: 'moveUser', title: '人员',  align: 'center' }
+                 , { field: 'moveAddress', title: '位置', align: 'center' }
+                  , { field: 'moveTime', title: '时间',align: 'center', templet: "<div>{{layui.util.toDateString(d.moveTime, 'yyyy-MM-dd HH:mm')}}</div>" }
+                   , { field: 'states', title: '状态', align: 'center' }
+                     , { field: 'remarks', title: '备注', align: 'center', fixed: 'right' }
+              ]]
+             , id: 'manage'
+             , page: true
+             , loading: true
+             , height: 'full-200'
+             , limit: 20
+             , text: {
+                 none:'暂无相关数据'
+             }
+             , parseData: function (res) { //res 即为原始返回的数据               
+               
+                 return {
+                    
+                     "code": 0, //解析接口状态
+                     "msg": res.message, //解析提示文本
+                     "count": res.count,//解析数据长度
+                     "data": res.data //解析数据列表
+                 };
+             }
+                , done: function (res) {
+                    //不支持ie导出
+                    //$("#import").click(function () {
+                    //    table.exportFile("manage", res.data, 'csv');
+                    //})
+                    $("#import").click(function () {
+                        console.log(res.data);
+                        res.data = excel.filterExportData(res.data, ['assetNum', 'deviceName', 'moveUser', 'moveAddress', 'moveTime', 'states', 'remarks']);
+                        res.data.unshift({ assetNum: '资产号', deviceName: '设备', moveUser: '人员', moveAddress: '位置', moveTime: '时间', states: '状态', remarks: '备注' });
+                        excel.downloadExl(res.data, 'importData', 'xlsx');
+                    })
+                }
+               
+               
+            });
+            function addLink(d) {            
+                var addLink = d.assetNum;
+              
+                if ('' == addLink || null == addLink || undefined == addLink) {
+                    return '<a class="layui-table-link" href="javascript:void(0);" lay-event="link">未知</a>';
+                }
+                if (addLink.length > 0) {
+                 
+                    return '<a class="layui-table-link" href="javascript:void(0);" lay-event="link">' + d.assetNum + '</a>';
+                }
+            }
+            //头事件
+            table.on('toolbar(manage)', function (obj) {
+                switch (obj.event) {
+                    case "AddData":
+                        layer.open({
+                            id: 'Add',
+                            title:'添加信息',
+                            type: 2,
+                            skin: 'layui-layer-rim', //加上边框
+                            area: ['700px', '440px'], //宽高
+                            content: 'AddData.html'
+                        });
+                        break;
+                }
+               
+            })
+            table.on('tool(manage)', function (obj) {
+                var checkStatus = obj.data;
+                if (checkStatus.assetNum == "") {                  
+                    var url = checkStatus.deviceName + "|" + checkStatus.moveUser + "|" + checkStatus.moveAddress + "|" + checkStatus.moveTime + "|" + checkStatus.states;
+                    console.log(url);
+                    url = encodeURIComponent(url);//加密
+                    console.log(url);
+                    layer.open({
+                        type: 2,
+                        title: '详细事项',
+                        shade: 0.8,
+                        area: ['60%', '90%'],
+                        content: 'assetNumInfo.html?' + url
+                    });
+                }
+                else {
+                    var url = checkStatus.assetNum + "|" + checkStatus.moveUser + "|" + checkStatus.moveAddress + "|" + checkStatus.moveTime + "|" + checkStatus.states;
+                    console.log(url);
+                    url = encodeURIComponent(url);
+                    console.log(url);
+
+                }
+                //var url = checkStatus.assetNum
+                //url = encodeURIComponent(url);
+                //console.log(checkStatus);//单号
+                //layer.open({
+                //    type: 2,
+                //    title: '账票详细',
+                //    shadeClose: true,
+                //    shade: 0.8,
+                //    area: ['60%', '90%'],
+                //    content: 'newList.html?' + url
+                //});
+            })
+            //条件查询
+            var $ = layui.$, active = {
+                reload: function () {
+                    var nums = $("#assets").val();
+                    
+                    var users = $("#users").val();
+                    var select = $("#selectStates").val();
+                  
+                    table.reload('manage', {
+                        page: {
+                            curr: 1
+                        }
+                        , where: {
+                            key: {
+                                id: nums,
+                                user: users,
+                                selectVal: select
+                            }
+                        }
+                       
+                    }, 'data');
+                   
+                }
+            }
+            $('.demoTable .layui-btn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        });
+        
+    </script>
+
+</body>
+</html>

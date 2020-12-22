@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>addData</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+</head>
+<body style="margin:10px;">
+ 
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">资产编号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="asset" placeholder="请输入资产号" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">&nbsp;<a href="#" style="color:blue" id="upload">批量上传</a></div>
+        
+          
+            
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">设备</label>
+            <div class="layui-input-inline">
+                <select id="device">
+                    <option value="主机" selected="">主机</option>
+                    <option value="扫描仪">扫描仪</option>
+                    <option value="打印机">打印机</option>
+                    <option value="PDA">PDA</option>
+                    <option value="平板电脑">平板电脑</option>
+                    <option value="笔记本">笔记本</option>
+                    <option value="其它">其它</option>
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux">此选项关系到首页数量的准确性</div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">人员</label>
+            <div class="layui-input-inline">
+                <input type="text" id="person" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux"></div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">位置</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="location" placeholder="位置" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                    <select id="state">
+                        <option value="">请选择</option>
+                        <option value="可用" selected="">可用</option>
+                        <option value="NG">NG</option>
+                        <option value="待报废">待报废</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea  class="layui-textarea" id="mark" style="width:515px;"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="Add()">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+            </div>
+        </div>
+    </form>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script>
+        $("#asset").focus();
+        layui.use(['layer', 'form', 'element', 'upload'], function () {
+            var layer = layui.layer,
+           form = layui.form,
+           upload = layui.upload;
+            var $ = layui.jquery
+            var element = layui.element;
+            upload.render({
+                elem: '#upload'
+            , url: 'import.ashx' //改成您自己的上传接口
+            , accept: 'file'
+            , exts: 'xls|xlsx'
+
+            , auto: true
+                //,multiple: true
+            , done: function (res) {
+                
+                console.log(res)
+                if (res != "-1") {
+                    layer.msg("已成功上传" + res[0] + "条记录");
+                    
+                }
+                else {
+                    layer.msg("上传失败");
+                }
+            }
+            });
+        });
+        function Add() {
+            var assetNum = $("#asset").val().trim();
+            var deviceName = $("#device").val().trim();
+            var userName=$("#person").val().trim();
+            var address=$("#location").val().trim();
+            var mark = $("#mark").val().trim();
+            var state=$("#state").val();
+
+            if (deviceName != "" && userName != "" && address != "") {
+                $.ajax({
+                    type: 'post',
+                    url: 'addData.ashx',
+                    data: {
+                        "Num": assetNum,
+                        "Name": deviceName,
+                        "User": userName,
+                        "Address": address,
+                        "Mark": mark,
+                        "State":state
+                    },
+                    success: function (res) {
+                        if (res == "0") {
+                            layer.msg("添加成功,请稍等", { icon: 6 });
+                            var index = parent.layer.getFrameIndex(window.name);
+                            setTimeout(function () {
+                                parent.layer.close(index);
+                                parent.location.reload();
+                            }, 3000);
+                        }
+                        else {
+                            layer.msg("Error!Please try again", { icon: 5 });
+                        }
+                    },
+                    error: function () {
+                        layer.msg("Error!please contact PDI", { icon: 2 });
+                    }
+                })
+            } else {
+                layer.msg('error not add data');
+            }
+        }
+        $("#test8").click(function () {
+          
+        })
+        </script>
+</body>
+</html>
